@@ -20,7 +20,18 @@ public class ExcelUtilTest {
         for (int i = 0; i < 20; i++) {
             dataSource.add(new Person());
         }
-        BufferedInputStream bufferedInputStream = ExcelUtil.renderToExcelByAnnotation(dataSource);
+//        BufferedInputStream bufferedInputStream = ExcelUtil.renderToExcelByAnnotation(dataSource);
+//        BufferedInputStream bufferedInputStream = ExcelUtil.renderToExcelNoAnnotation(dataSource);
+        BufferedInputStream bufferedInputStream = CSVUtil.renderToExcelNoAnnotation(dataSource);
+        FileUtils.copyInputStreamToFile(bufferedInputStream, new File("person.csv"));
+    }
+ @Test
+    public void renderToExcelNoAnnocation() throws IOException {
+        List<Person> dataSource = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            dataSource.add(new Person());
+        }
+        BufferedInputStream bufferedInputStream = ExcelUtil.renderToExcelNoAnnotation(dataSource);
         FileUtils.copyInputStreamToFile(bufferedInputStream, new File("person.xls"));
     }
 
@@ -40,7 +51,7 @@ public class ExcelUtilTest {
 }
 
 class Person {
-    @ExcelExport(name = "姓名", index = 0)
+    @ExcelExport(name = "姓名", index = 1)
     String name;
     @ExcelExport(name = "年龄")
     Integer age;
@@ -53,6 +64,17 @@ class Person {
     @ExcelExport(name = "身份")
     Boolean admin;
 
+    @ExcelExport(name = "测试坐标")
+    List<Point> points;
+
+    public List<Point> getPoints() {
+        return points;
+    }
+
+    public void setPoints(List<Point> points) {
+        this.points = points;
+    }
+
     public Person() {
         int i = new Random().nextInt(100);
         this.name = "name" + i;
@@ -61,6 +83,11 @@ class Person {
         this.addr = "addr" + i;
         this.birth = DateUtil.subDays(new Date(), i);
         this.admin = (i % 2 == 0);
+        this.points=new ArrayList<>();
+        this.points.add(new Point(3,5));
+        this.points.add(new Point(5,5));
+        this.points.add(new Point(7,5));
+        this.points.add(new Point(8,5));
     }
 
     public String getName() {

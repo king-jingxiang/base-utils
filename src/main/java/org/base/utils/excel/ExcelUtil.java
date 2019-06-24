@@ -120,7 +120,21 @@ public class ExcelUtil {
         ResultData resultData = ExcelDateHelper.buildResultData(dataSource);
         return renderToExcel(resultData.getKeys(), resultData.getData());
     }
+    /**
+     * T 所有属性需要添加ExcelExport标签
+     *
+     * @param dataSource
+     * @param <T>
+     * @throws IOException
+     */
+    public static <T> BufferedInputStream renderToExcelNoAnnotation(List<T> dataSource) throws IOException {
 
+        if (dataSource == null || dataSource.isEmpty()) {
+            return null;
+        }
+        ResultData resultData = ExcelDateHelper.buildResultDataNoAnnotation(dataSource);
+        return renderToExcel(resultData.getKeys(), resultData.getData());
+    }
     /**
      * 读取excel转obj
      *

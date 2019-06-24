@@ -1,14 +1,12 @@
 package org.base.utils.io;
 
-import com.google.common.graph.Traverser;
-import org.base.utils.text.WildcardMatcher;
 import com.google.common.base.Predicate;
-import com.google.common.collect.TreeTraverser;
+import com.google.common.graph.Traverser;
 import com.google.common.io.Files;
+import org.base.utils.text.WildcardMatcher;
 
 import java.io.File;
 import java.util.Iterator;
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class FileTreeWalker {
