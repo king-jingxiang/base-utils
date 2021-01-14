@@ -22,7 +22,7 @@
         <commons-io.version>2.4</commons-io.version>
         <orika.version>1.5.2</orika.version>
         <cglib.version>3.2.4</cglib.version>
-        <poi.version>3.14</poi.version>
+        <poi.version>4.1.2</poi.version>
         <jackson-databind.version>2.9.9</jackson-databind.version>
     </properties>
     <dependencies>
